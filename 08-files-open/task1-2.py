@@ -8,7 +8,7 @@ def read_receipes(filename):
 
             ingredients_count = int(f.readline())
             ingredients = []
-            for i in range(ingredients_count):
+            for _ in range(ingredients_count):
                 ingredient = f.readline().strip()
                 ingredient_data = ingredient.split(' | ')
                 ingredients.append({'ingredient_name': ingredient_data[0], 'quantity': int(ingredient_data[1]),
@@ -29,9 +29,8 @@ def get_shop_list_by_dishes(dishes, person_count):
             if ingredient['ingredient_name'] in shop_list:
                 shop_list[ingredient['ingredient_name']]['quantity'] += ingredient['quantity'] * person_count
             else:
-                shop_list.setdefault(ingredient['ingredient_name'],
-                                     {'measure': ingredient['measure'],
-                                      'quantity': ingredient['quantity'] * person_count})
+                shop_list[ingredient['ingredient_name']] = {'measure': ingredient['measure'],
+                                                             'quantity': ingredient['quantity'] * person_count}
 
     return shop_list
 
